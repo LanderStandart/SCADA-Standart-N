@@ -1,0 +1,49 @@
+﻿<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Language" content="ru" />
+<title>Сводный менеджер</title>
+<link href="_res/_main.css" rel="stylesheet" type="text/css">
+<link href="_res/_table.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="_res/ajax.js"></script>
+</head>
+<body>
+<a href="#" onclick="getAjax('engine/test.php',warebase_table);">Запустить php скрипт</a>  
+http://cf:8080/kzf/mastermanager/test_ajax.php#
+<br>
+<div id="warebase_table" class="table">
+<div class="row">
+  <div class="cell_h">№№</div>
+  <div class="cell_h">Группы</div>
+  <div class="cell_h">Профиль</div>
+  <div class="cell_h">Товар</div>
+  <div class="cell_h">Серия</div>
+  <div class="cell_h">Остаток</div>
+  <div class="cell_h">Закуп. цена</div>
+  <div class="cell_h">Наценка</div>
+  <div class="cell_h">Розн. цена</div>
+  <div class="cell_h">ШК изг</div>
+  <div class="cell_h">Годен до</div>
+  <div class="cell_h">Контрагент</div>
+  <div class="cell_h">Дата прихода</div>
+</div>
+<div class="row">
+  <div class="cell">№№sd ldklfd dlkfld fkdlfk dlfkd fldfk dlfkd fldfk dlfkd lfk khj</div>
+  <div class="cell">Группы</div>
+  <div class="cell">Профиль</div>
+  <div class="cell">Товар</div>
+  <div class="cell">Серия</div>
+  <div class="cell">Остаток</div>
+  <div class="cell">Закуп. цена</div>
+  <div class="cell">Наценка</div>
+  <div class="cell">Розн. цена</div>
+  <div class="cell">ШК изг</div>
+  <div class="cell">Годен до</div>
+  <div class="cell">Контрагент</div>
+  <div class="cell">Дата прихода</div>
+</div>
+<div class="wb_row"></div>
+</div>
+<div id="console" style="padding: 3px; background:lightgray; float: right; vertical-align: bottom; font-size: 12px; text-align: right;"></div>
+</body>
+</html>

@@ -1,0 +1,9 @@
+<?php
+class userclass{
+	
+
+
+function 	
+}
+$open = ftp_connect("partner.melzdrav.ru", 21, 30);
+if (!ftp_login($open, "partner15339", "your_password")) exit("Не могу соединиться");

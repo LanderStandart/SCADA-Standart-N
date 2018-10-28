@@ -1,0 +1,17 @@
+<?php header('Content-Type: text/html; charset=utf-8');
+include('engine/user.lib.php'); //подключаемся к БД
+ $user = new userclass();
+  $user->init();
+$s='SELECT SNAME from WAREBASE_G where SNAME containing(\''.$_GET['search'].'\')';
+//print_r($s);
+
+$q=ibase_query($user->default_trn,$s);
+
+
+
+while ($row=ibase_fetch_object($q)){
+		 print_r( $row->SNAME);}
+	//	$return_arr[] = $row[0];
+	//}
+//echo json_encode($return_arr); 
+?>
