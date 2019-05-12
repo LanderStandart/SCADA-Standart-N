@@ -23,7 +23,7 @@ class userclass{
   
   function init(){
     session_start();
-    $this->db = ibase_connect($GLOBALS["DB_DATABASENAME"], $GLOBALS["DB_USER"], $GLOBALS["DB_PASSWD"]) or die("db connect error " . ibase_errmsg());
+    $this->db = ibase_connect(iconv("utf-8", "windows-1251", $GLOBALS["DB_DATABASENAME"]), $GLOBALS["DB_USER"], $GLOBALS["DB_PASSWD"]) or die("db connect error " . ibase_errmsg());
 	$this->default_trn = ibase_trans(IBASE_WRITE + IBASE_COMMITTED + IBASE_REC_VERSION + IBASE_NOWAIT, $this->db) or die(" error start transaction".ibase_errmsg());
 	$this->html_header=file_get_contents("engine/res/header_def.php");
     if (!$this->checkuser()){ return;}
@@ -62,6 +62,11 @@ function initobj(){
   $this->setheader();
   $this->setmenu();
 }
+function ConnectFirebirdSQL(){
+  include_once('declare.php');
+  $this->db = ibase_connect(iconv('utf-8', 'windows-1251', $GLOBALS["DB_DATABASENAME"]), $GLOBALS["DB_USER"], $GLOBALS["DB_PASSWD"]) or die("db connect error " . ibase_errmsg());
+  $this->default_trn = ibase_trans(IBASE_WRITE + IBASE_COMMITTED + IBASE_REC_VERSION + IBASE_NOWAIT, $this->db) or die(" error start transaction".ibase_errmsg());
+}  
 
   function codebykey($s, $key)
   {

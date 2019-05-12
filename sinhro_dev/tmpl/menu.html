@@ -1,0 +1,69 @@
+            
+                {% for item in sidebarMenu %}
+                    {% set ul = '' %}{% set li = '' %}{% set a = '' %}{% set end = '' %}{% set endf = '' %}
+              
+                          {% if not item.root is null %}
+                              {% if not item.root =='1' %}                          
+                                  {% set li = '<div class="dropdown">' %}
+                                  {% set a = '<a id="dLabel" role="button" data-toggle="dropdown" class="nav-link dropdown-toggle" data-target="#"  ' %}
+                                  {% set end = '</a>' %}
+                                  {% set endf = '</div>' %} 
+                               {% else %}     
+                                  {% set li = '<li class="nav-item">' %}
+                                  {% set a = '<a class="nav-link"' %}
+                                  {% set end = '</a></li>' %}                                  
+                              {% endif%}
+                              {% else%}
+                              {% if not item.id is null %}
+                                      {% set li = '<ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu"><li class="dropdown-submenu">' %}
+                                      {% set a = '<a class="dropdown-item" tabindex="-1"' %} 
+                                      {% set end = '</a>' %} 
+                                      {% set endf = '</li>' %}
+                              {% else %}
+                                      {% if not item.id1 is null %}
+                                        {% set li = '<ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu"><li>' %}
+                                        {% set a = '<a class="dropdown-item" ' %} 
+                                        {% set end = '</a></li>' %}
+                                        {% set endf = '' %}      
+                                      {% else%}
+                                        {% set li = '<li class="dropdown-submenu">' %} 
+                                        {% set a = '<a class="dropdown-item"' %} 
+                                        {% set end = '</a></li>' %} 
+                                        {% set endf = '' %} 
+                                      {% endif%}         
+                              {% endif%}
+                              {% if not item.child  is null %}
+                                {% set endf = '</ul>' %} 
+                              {% endif%}  
+                                    
+
+                         {% endif%}
+                       {% set title = item.title %}     
+                      {% if not item.log_in is null %}
+                        {%set li = '<li class="nav-item">' %}
+                        {%set a =  '<a class="nav-link" data-toggle="modal" data-target="#Login" ' %}
+                        {% set end = '</a></li>' %} 
+                        {%if not LogIn.login is null %}
+                          {% set title = LogIn.login %}
+                        {% else%}   
+                          {% set title = item.title %} 
+                        {% endif %}    
+                      {% endif %}  
+
+
+                         {{ li|raw }} 
+                         {{ a|raw }} href="{{ item.href }}"> {{ title|raw }}{{ end|raw }}{{ ul|raw }}   
+                                         
+                            {% if not item.childs is null %}
+                              {{ include(_self, {sidebarMenu: item.childs}) }}
+                            {% endif %}
+                             {% if not item.child is null %}
+                              {{ include(_self, {sidebarMenu: item.child}) }}
+                            {% endif %}
+                  
+                 {{ endf|raw }}
+ {% set endf = '' %} 
+                {% endfor %}
+
+{{ endf|raw }}            
+

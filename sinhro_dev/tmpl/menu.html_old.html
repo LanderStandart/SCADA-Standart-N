@@ -1,0 +1,45 @@
+            
+                {% for item in sidebarMenu %}
+                    {% set ul = '' %}  
+                          {% if not item.root is null %}
+                              {% if not item.root =='1' %}                          
+                                  {% set li = '<div class="dropdown">' %}
+                                  {% set a = '<a id="dLabel" role="button" data-toggle="dropdown" class="nav-link dropdown-toggle" data-target="#"  ' %}
+                                  {% set end = '</a>' %}
+                                  {% set endf = '</ul></div>' %}
+                               {% else %}
+                                   {% set li = '<li class="nav-item">' %}
+                                   {% set a = '<a class="nav-link"' %}    
+                              {% endif %}  
+                          {% else %}
+                               {% if not item.id is null %} 
+                                  {% set li = '<ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu"><li class="dropdown-submenu">' %}
+                               {% else %}
+                                  {% set li = '<li class="dropdown-submenu">' %}  
+                               {% endif%}
+
+                               {% if not item.child is null %} 
+                                  {% set endf = ' ' %}
+                                  {% set li = '<ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu"><li class="dropdown-submenu">' %}
+                                  {% set ul = '<ul class="dropdown-menu">' %}   
+                               {% else %}
+                                  {% set li = '<li>' %} 
+                                  {% set endf = '</ul></li></div>' %} 
+                               {% endif%} 
+
+                            {% set a = '<a class="dropdown-item" tabindex="-1" ' %}
+                            {% set end = '</a>' %}
+                          {% endif%}           
+                         {{ li|raw }} {{ a|raw }} href="{{ item.href }}"> {{ item.title }}{{ end|raw }}{{ ul|raw }}
+                     
+                            {% if not item.childs is null %}
+                              {{ include(_self, {sidebarMenu: item.childs}) }}
+                            {% endif %}
+                             {% if not item.child is null %}
+                              {{ include(_self, {sidebarMenu: item.child}) }}
+                            {% endif %}
+                 
+                {% endfor %}
+{{ endf|raw }}            
+
+

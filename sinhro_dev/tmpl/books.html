@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}
+<div><img src="./images/server.png" ></div>
+Серия романов о Гарри Поттере{% endblock %}
+
+{% block content %}
+
+<div id="books">
+    {% for book in books %}
+    <div class="book">
+    	<strong>{{book.number}}</strong>. "<em>{{book.title}}"</em> - {{book.date}}
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
